@@ -2,7 +2,10 @@ extends KinematicBody2D
 
 class_name Entity
 
-# - Attributes
+# - Scenes
+var damageZone = preload("res://scenes/damageZone.tscn")
+
+# - General Attributes
 var accel = Vector2(50, 50)
 
 var health = 100
@@ -10,6 +13,9 @@ var healthMax = 100
 
 var attack = 5
 var defense = 1
+
+# - Specific Attributes
+var meleeRange = 22
 
 func takeDamage(attacker):
 	health -= attacker.attack - self.defense
@@ -21,4 +27,4 @@ func die():
 	queue_free()
 
 func attack():
-	pass
+	get_global_mouse_position()

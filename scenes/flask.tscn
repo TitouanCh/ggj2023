@@ -5,8 +5,8 @@
 [node name="flask" type="Node2D"]
 
 [node name="viewportContainer" type="ViewportContainer" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_right = 1024.0
+margin_bottom = 600.0
 rect_scale = Vector2( 2, 2 )
 
 [node name="viewport" type="Viewport" parent="viewportContainer"]
