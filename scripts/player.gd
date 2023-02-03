@@ -13,8 +13,13 @@ func _process(delta):
 		inputs.y += 1
 	
 	position += inputs * delta * accel
+	
+	# - ATTACK
+	if Input.is_action_just_pressed("attack"):
+		pass
 
 
 func _draw():
 	# - DEBUG
-	draw_circle(Vector2.ZERO, 4, Color(255, 255, 255))
+	draw_circle(Vector2.ZERO, 16, Color(255, 255, 255))
+
