@@ -24,6 +24,11 @@ config/name="ggj2023"
 run/main_scene="res://scenes/flask.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/size/width=900
+window/size/height=512
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
