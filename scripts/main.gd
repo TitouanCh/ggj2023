@@ -21,14 +21,17 @@ var enemies = []
 func _ready():
 	startGeneration(generation)
 	
-	choosePerk()
+#	choosePerk()
 
 func startGeneration(generation):
+	if player: player.queue_free()
 	print("Start Generation " + str(generation))
 	spawnPlayer()
+	numberOfEnemies = 3 + int(Global.active_upgrades.has("+3 Enemies")) * 3
 	for i in range(numberOfEnemies):
 		spawnEnemy()
 	print("-> " + str(actualNumberOfEnemies) + " Enemies")
+	generation += 1
 
 func spawnPlayer():
 	var a = playerScene.instance()
@@ -59,3 +62,4 @@ func choosePerk():
 	player.visible = false
 	self.add_child(tree)
 	tree.player = player
+

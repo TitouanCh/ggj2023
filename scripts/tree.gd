@@ -8,13 +8,15 @@ var name1erchoix = "on verra "
 var name21erchoix = "on verra "
 var name22erchoix = "on verra "
 
+var choosen = true
+
 var Yoffset = 0
 
 var baseModX = 100
 var incrementY = 30
 
 var choix = {
-	"test1":
+	"Enemy Swat":
 		{
 			"test4": {
 				"test8": {},
@@ -22,7 +24,7 @@ var choix = {
 			},
 			"test5":{}
 		}, 
-	"test2": {
+	"+3 Enemies": {
 			"test6":{
 				"test10": {},
 			},
@@ -43,7 +45,10 @@ func _process(delta):
 	if player: self.position = self.position.linear_interpolate(player.position - Vector2(0, Yoffset), delta * 40)
 	update()
 	
-	$test.global_position = get_global_mouse_position()/2 + Vector2(-27, 24)
+	$test.global_position = get_global_mouse_position()/2 + Vector2(-130, -75) + player.position/2
+
+func get_player_position():
+	return player.position
 
 func createTree(data, parent = self, modx = baseModX):
 	for i in range(len(data.keys())):
@@ -53,6 +58,11 @@ func createNoeud(n, choix, parent, modx, childnumber, nchild):
 	var a = noeudScene.instance()
 	parent.add_child(a)
 	a.name = n
+	a.connect("send_desc", parent, "show_desc")
+	a.connect("unlock_ability", parent, "ability_is_unlocked")
+	if Global.active_upgrades.has(n):
+		a.choosen = true
+		a.unlocked = true
 #	print(n)
 #	print(parent.position + calculx(nchild, modx/2, childnumber))
 	a.position = calculx(nchild, modx/2, childnumber)
@@ -82,4 +92,21 @@ func calculx(nchild, modx, childnumber):
 func _draw():
 	for child in get_children():
 		if child is Node2D:
-			draw_line(Vector2.ZERO, child.position, Color(255, 255, 255))
+			if choosen:
+				draw_line(Vector2.ZERO, child.position, Color(255, 255, 0))
+			else:
+				draw_line(Vector2.ZERO, child.position, Color(255, 255, 255))
+
+func show_desc(id):
+	if $skillDesc.bbcode_text != get_desc(id):
+		$skillDesc.bbcode_text = get_desc(id)
+
+func get_desc(id):
+	var desc = "[wave amp=20 freq=2][b]" + id + "[/b]" + "\n"
+	if Global.upgrades_desc.keys().has(id):
+		desc += Global.upgrades_desc[id]
+	return desc
+
+func ability_is_unlocked():
+	if get_parent(): get_parent().startGeneration(get_parent().generation)
+	queue_free()
