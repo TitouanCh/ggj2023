@@ -37,22 +37,13 @@ var choix = {
 func _ready():
 	
 	boucletree+=1
-	
-#	var a = noeudScene.instance()
-#	if (boucletree == 1):
-#		print(name1erchoix)
-#	var b = self.add_child(a)
-#	if (boucletree ==2):
-#		print(name1erchoix)
-#		Input.is_action_pressed("click"):
-
-	
-#	var b = self.add_child(a)
 	createTree(choix)
 
 func _process(delta):
 	if player: self.position = self.position.linear_interpolate(player.position - Vector2(0, Yoffset), delta * 40)
 	update()
+	
+	$test.global_position = get_global_mouse_position()/2 + Vector2(-27, 24)
 
 func createTree(data, parent = self, modx = baseModX):
 	for i in range(len(data.keys())):
