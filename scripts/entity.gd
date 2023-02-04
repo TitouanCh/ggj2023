@@ -53,9 +53,9 @@ func move(delta):
 	
 	velocity = move_and_slide(velocity)
 
-func takeDamage(attacker):
-	health -= attacker.attack - self.defense
-	velocity -= (attacker.position - self.position).normalized() * knockback
+func takeDamage(attacker, damageMod = 1, knockbcakMod = 1):
+	health -= attacker.attack * damageMod - self.defense
+	velocity -= (attacker.position - self.position).normalized() * knockback * knockbcakMod
 	
 	if health <= 0:
 		die()
