@@ -17,12 +17,15 @@ func getInputs(delta):
 	if !attacking:
 		if Input.is_action_pressed("left"):
 			inputs.x -= 1
+		
 		if Input.is_action_pressed("right"):
 			inputs.x += 1
 		if Input.is_action_pressed("up"):
 			inputs.y -= 1
 		if Input.is_action_pressed("down"):
 			inputs.y += 1
+		if Global.active_upgrades.has("Inversion") :
+			inputs = -inputs
 		
 		if Input.is_action_just_pressed("dash") and dashCooldown >= dashCooldownMax:
 			dash()

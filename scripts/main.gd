@@ -55,6 +55,8 @@ func spawnPlayer():
 		player.accel = Vector2(400,400)
 	if Global.active_upgrades.has("Bourré") :
 		bourre_function()
+	
+
 		
 func bourre_function():
 	print("start")

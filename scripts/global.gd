@@ -9,5 +9,6 @@ var upgrades_desc = {
 	"-Atk" : "None",
 	"+3 Enemies " : "None",
 	"- Mvt " : "None",
-	"Bourré " : "None"
+	"Bourré " : "None",
+	"Inversion" : "None"
 }
