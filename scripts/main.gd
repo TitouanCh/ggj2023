@@ -50,6 +50,8 @@ func spawnPlayer():
 		player.healthMax = player.healthMax+80
 	if Global.active_upgrades.has("-Atk") :
 		player.attack = player.attack-50
+	if Global.active_upgrades.has("- Mvt") :
+		player.accel = Vector2(400,400)
 
 func spawnEnemy(type = "melee"):
 	var a = enemyScene.instance()
