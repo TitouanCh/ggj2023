@@ -4,6 +4,8 @@ func _ready():
 	attack = 100
 	accel = Vector2(1000, 1000)
 	sprite = $sprite
+	healthColor = Color(0, 255, 0)
+	makeHeart()
 
 func getInputs(delta):
 	# - MOVEMENT

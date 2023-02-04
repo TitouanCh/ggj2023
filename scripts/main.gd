@@ -29,7 +29,7 @@ func startGeneration(generation):
 	spawnPlayer()
 	numberOfEnemies = 3 + int(Global.active_upgrades.has("+3 Enemies")) * 3
 	for i in range(numberOfEnemies):
-		if Global.active_upgrades.has("Enemy Swat") and i <= 3:
+		if Global.active_upgrades.has("Enemy Swat") and i < 3:
 			spawnEnemy("swat")
 		else:
 			spawnEnemy()

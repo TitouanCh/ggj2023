@@ -17,6 +17,7 @@ var friction = 0.9
 var health = 100
 var healthMax = 100
 var healthAnimation = health
+var healthColor = Color(255, 0, 0)
 
 var attack = 25
 var defense = 1
@@ -100,13 +101,22 @@ func shootAttack(target, speed = 5, wind = 1):
 	bullet.linear_velocity = target.normalized() * speed * 100
 	self.add_child(bullet)
 	
-	yield(get_tree().create_timer(wind * randf()), "timeout")
+	yield(get_tree().create_timer(wind + randf()), "timeout")
 	sprite.animation = "idle"
 	attacking = false
 	
 func drawHealthBar():
 	draw_rect(Rect2(-11, -21, 22,5), Color(0,0,0))
-	draw_rect(Rect2(-10, -20, healthAnimation/healthMax*20,3), Color(255,0,0))
+	draw_rect(Rect2(-10, -20, healthAnimation/healthMax*20,3), healthColor)
 	
 func  _draw():
 	 drawHealthBar()
+
+func makeHeart():
+	heart = Sprite.new()
+	heart.scale = Vector2(0.5, 0.5)
+	heart.z_index = 10000
+	self.add_child(heart)
+	heart.texture = lifeImage
+	heart.position = Vector2 (-12, -19)
+	heart.modulate = healthColor
