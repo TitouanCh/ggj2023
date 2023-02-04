@@ -1,8 +1,7 @@
 extends Entity
 
-func _process(delta):
+func getInputs():
 	# - MOVEMENT
-	var inputs = Vector2.ZERO
 	if Input.is_action_pressed("left"):
 		inputs.x -= 1
 	if Input.is_action_pressed("right"):
@@ -11,8 +10,6 @@ func _process(delta):
 		inputs.y -= 1
 	if Input.is_action_pressed("down"):
 		inputs.y += 1
-	
-	position += inputs * delta * accel
 	
 	# - ATTACK
 	if Input.is_action_just_pressed("attack"):
@@ -27,5 +24,4 @@ func _draw():
 func attack():
 	var a = damageZone.instance()
 	self.add_child(a)
-	
 	a.position = -(self.global_position - (get_global_mouse_position()/Vector2(2, 2))).normalized() * meleeRange
