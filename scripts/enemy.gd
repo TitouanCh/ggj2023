@@ -7,7 +7,13 @@ var arms = null
 func _ready():
 	sprite = $sprite
 	attack = 5
-
+	heart = Sprite.new()
+	heart.scale = Vector2(0.5, 0.5)
+	heart.z_index = 10000
+	self.add_child(heart)
+	heart.texture = lifeImage
+	heart.position = Vector2 (-12, -19)
+	heart.modulate = Color(255, 0, 0)
 
 func setType(t):
 	type = t
@@ -23,6 +29,7 @@ func setType(t):
 		arms.flip_h = true
 		arms.position += Vector2(0, -1)
 		arms.connect("animation_finished", self, "stopArms")
+		
 
 func getInputs(delta):
 	var dir2player = player.global_position - self.global_position

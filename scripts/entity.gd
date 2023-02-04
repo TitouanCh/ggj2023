@@ -6,6 +6,7 @@ class_name Entity
 var damageZone = preload("res://scenes/damageZone.tscn")
 var fx = preload("res://scenes/fx.tscn")
 var bulletScene = preload("res://scenes/bullet.tscn")
+var lifeImage = preload("res://sprites/fx/coeur.png")
 
 # - General Attributes
 var accel = Vector2(500, 500)
@@ -15,11 +16,13 @@ var friction = 0.9
 
 var health = 100
 var healthMax = 100
+var healthAnimation = health
 
 var attack = 25
 var defense = 1
 
 var sprite = null
+var heart= null
 
 # - Specific Attributes
 var meleeRange = 22
@@ -27,6 +30,7 @@ var knockback = 240
 var attacking = false
 
 func _process(delta):
+	healthAnimation = lerp(healthAnimation, health, delta * 10)
 	update()
 
 func _physics_process(delta):
@@ -99,3 +103,10 @@ func shootAttack(target, speed = 5, wind = 1):
 	yield(get_tree().create_timer(wind * randf()), "timeout")
 	sprite.animation = "idle"
 	attacking = false
+	
+func drawHealthBar():
+	draw_rect(Rect2(-11, -21, 22,5), Color(0,0,0))
+	draw_rect(Rect2(-10, -20, healthAnimation/healthMax*20,3), Color(255,0,0))
+	
+func  _draw():
+	 drawHealthBar()
