@@ -5,6 +5,7 @@ class_name Entity
 # - Scenes
 var damageZone = preload("res://scenes/damageZone.tscn")
 var fx = preload("res://scenes/fx.tscn")
+var bulletScene = preload("res://scenes/bullet.tscn")
 
 # - General Attributes
 var accel = Vector2(500, 500)
@@ -25,14 +26,16 @@ var meleeRange = 22
 var knockback = 240
 var attacking = false
 
+func _process(delta):
+	update()
 
 func _physics_process(delta):
 	inputs = Vector2.ZERO
-	getInputs()
+	getInputs(delta)
 	move(delta)
 	z_index = position.y
 
-func getInputs():
+func getInputs(delta):
 	pass
 
 func move(delta):
@@ -83,4 +86,16 @@ func meleeAttack(target, windUpTime, windDownTime):
 	a.rotation = target.normalized().angle()
 	yield(get_tree().create_timer(windDownTime), "timeout")
 	
+	attacking = false
+
+func shootAttack(target, speed = 5, wind = 1):
+	attacking = true
+	sprite.animation = "attack"
+	var bullet = bulletScene.instance()
+	bullet.position += target.normalized() * 20 + Vector2(0, -1)
+	bullet.linear_velocity = target.normalized() * speed * 100
+	self.add_child(bullet)
+	
+	yield(get_tree().create_timer(wind * randf()), "timeout")
+	sprite.animation = "idle"
 	attacking = false

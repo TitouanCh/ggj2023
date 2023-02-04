@@ -5,7 +5,7 @@ func _ready():
 	accel = Vector2(1000, 1000)
 	sprite = $sprite
 
-func getInputs():
+func getInputs(delta):
 	# - MOVEMENT
 	if !attacking:
 		if Input.is_action_pressed("left"):
