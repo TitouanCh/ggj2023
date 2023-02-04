@@ -93,9 +93,9 @@ func _draw():
 	for child in get_children():
 		if child is Node2D:
 			if choosen:
-				draw_line(Vector2.ZERO, child.position, Color(255, 255, 0))
+				draw_line(Vector2.ZERO, child.position, Color(255, 255, 0),2)
 			else:
-				draw_line(Vector2.ZERO, child.position, Color(255, 255, 255))
+				draw_line(Vector2.ZERO, child.position, Color(255, 255, 255),2)
 
 func show_desc(id):
 	if $skillDesc.bbcode_text != get_desc(id):

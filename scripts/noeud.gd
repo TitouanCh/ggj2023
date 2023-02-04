@@ -14,9 +14,9 @@ func _draw():
 	for child in get_children():
 		if child is Node2D:
 			if choosen:
-				draw_line(Vector2.ZERO, child.position, Color(255, 255, 0))
+				draw_line(Vector2.ZERO, child.position, Color(255, 255, 0), 2)
 			else:
-				draw_line(Vector2.ZERO, child.position, Color(155, 255, 255))
+				draw_line(Vector2.ZERO, child.position, Color(155, 255, 255), 2)
 
 func _process(delta):
 	if choosen:
