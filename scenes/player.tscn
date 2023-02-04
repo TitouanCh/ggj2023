@@ -4,7 +4,7 @@
 [ext_resource path="res://spriteframes/titouan.tres" type="SpriteFrames" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 16.0
+radius = 8.0
 
 [node name="player" type="KinematicBody2D"]
 script = ExtResource( 1 )
@@ -21,7 +21,6 @@ smoothing_enabled = true
 [node name="sprite" type="AnimatedSprite" parent="."]
 frames = ExtResource( 2 )
 animation = "idle"
-frame = 2
 playing = true
 
 [connection signal="animation_finished" from="sprite" to="." method="_on_sprite_animation_finished"]

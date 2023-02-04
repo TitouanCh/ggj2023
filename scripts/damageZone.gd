@@ -1,7 +1,10 @@
 extends Area2D
 
 # In s
-var timeAlive = 0.05
+var timeAlive = 0.1
+
+func _ready():
+	$sprite.playing = true
 
 func _process(delta):
 	timeAlive -= delta

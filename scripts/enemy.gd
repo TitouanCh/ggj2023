@@ -28,6 +28,9 @@ func _draw_line():
 func die():
 	print(self.name + " is dead.")
 	get_parent().reduceEnemyCount()
+	var s = fx.instance()
+	get_parent().add_child(s)
+	s.global_position = self.position - Vector2(8, 8)
 	queue_free()
 
 

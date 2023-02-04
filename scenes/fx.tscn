@@ -1,0 +1,36 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://scripts/fx.gd" type="Script" id=1]
+[ext_resource path="res://sprites/fx/splatter15.png" type="Texture" id=2]
+[ext_resource path="res://sprites/fx/splatter13.png" type="Texture" id=3]
+[ext_resource path="res://sprites/fx/splatter17.png" type="Texture" id=4]
+[ext_resource path="res://sprites/fx/splatter11.png" type="Texture" id=5]
+[ext_resource path="res://sprites/fx/splatter12.png" type="Texture" id=6]
+[ext_resource path="res://sprites/fx/splatter14.png" type="Texture" id=7]
+[ext_resource path="res://sprites/fx/splatter16.png" type="Texture" id=8]
+[ext_resource path="res://sprites/fx/splatter8.png" type="Texture" id=9]
+[ext_resource path="res://sprites/fx/splatter9.png" type="Texture" id=10]
+[ext_resource path="res://sprites/fx/splatter2.png" type="Texture" id=11]
+[ext_resource path="res://sprites/fx/splatter10.png" type="Texture" id=12]
+[ext_resource path="res://sprites/fx/splatter6.png" type="Texture" id=13]
+[ext_resource path="res://sprites/fx/splatter1.png" type="Texture" id=14]
+[ext_resource path="res://sprites/fx/splatter4.png" type="Texture" id=15]
+[ext_resource path="res://sprites/fx/splatter7.png" type="Texture" id=16]
+[ext_resource path="res://sprites/fx/splatter3.png" type="Texture" id=17]
+[ext_resource path="res://sprites/fx/splatter5.png" type="Texture" id=18]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 14 ), ExtResource( 11 ), ExtResource( 17 ), ExtResource( 15 ), ExtResource( 18 ), ExtResource( 13 ), ExtResource( 16 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 12 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 3 ), ExtResource( 7 ), ExtResource( 2 ), ExtResource( 8 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 20.0
+} ]
+
+[node name="fx" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="sprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+
+[connection signal="animation_finished" from="sprite" to="." method="_on_sprite_animation_finished"]

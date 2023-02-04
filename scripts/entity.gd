@@ -4,6 +4,7 @@ class_name Entity
 
 # - Scenes
 var damageZone = preload("res://scenes/damageZone.tscn")
+var fx = preload("res://scenes/fx.tscn")
 
 # - General Attributes
 var accel = Vector2(500, 500)
@@ -24,11 +25,12 @@ var meleeRange = 22
 var knockback = 240
 var attacking = false
 
+
 func _physics_process(delta):
 	inputs = Vector2.ZERO
 	getInputs()
 	move(delta)
-	print()
+	z_index = position.y
 
 func getInputs():
 	pass
@@ -49,9 +51,21 @@ func takeDamage(attacker):
 	
 	if health <= 0:
 		die()
+	
+	flicker()
+	
+func flicker():
+	for i in 2:
+		modulate = Color(255, 0, 0)
+		yield(get_tree().create_timer(0.05), "timeout")
+		modulate = Color(1, 1, 1)
+		yield(get_tree().create_timer(0.05), "timeout")
 
 func die():
 	print(self.name + " is dead.")
+	var s = fx.instance()
+	get_parent().add_child(s)
+	s.global_position = self.position - Vector2(8, 8)
 	queue_free()
 
 func attack():
@@ -66,6 +80,7 @@ func meleeAttack(target, windUpTime, windDownTime):
 	var a = damageZone.instance()
 	self.add_child(a)
 	a.position = target.normalized() * meleeRange
+	a.rotation = target.normalized().angle()
 	yield(get_tree().create_timer(windDownTime), "timeout")
 	
 	attacking = false
