@@ -18,11 +18,11 @@ var incrementY = 30
 var choix = {
 	"Enemy Swat":
 		{
-			"test4": {
+			"-Pv": {
 				"test8": {},
 				"test9": {}
 			},
-			"test5":{}
+			"-Atk":{}
 		}, 
 	"+3 Enemies": {
 			"test6":{

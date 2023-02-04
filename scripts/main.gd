@@ -41,6 +41,10 @@ func spawnPlayer():
 	self.add_child(a)
 	player = a
 	player.position = roomSize/2
+	if Global.active_upgrades.has("-Pv") :
+		player.healthMax = player.healthMax+80
+	if Global.active_upgrades.has("-Atk") :
+		player.attack = player.attack-50
 
 func spawnEnemy(type = "melee"):
 	var a = enemyScene.instance()

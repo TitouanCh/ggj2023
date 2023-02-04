@@ -6,7 +6,7 @@ var arms = null
 
 func _ready():
 	sprite = $sprite
-	attack = 5
+	attack = 10
 	makeHeart()
 
 func setType(t):

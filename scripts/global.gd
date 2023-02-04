@@ -4,5 +4,7 @@ var active_upgrades = []
 
 var upgrades_desc = {
 	"Enemy Swat" : "None",
-	"+3 Enemies" : "None"
+	"+3 Enemies" : "None",
+	"-Pv" : "None",
+	"-Atk" : "None"
 }
