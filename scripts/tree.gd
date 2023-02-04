@@ -25,7 +25,7 @@ var choix = {
 			"-Atk":{}
 		}, 
 	"+3 Enemies": {
-			"test6":{
+			"+3 Enemies ":{
 				"test10": {},
 			},
 			"test7":{}

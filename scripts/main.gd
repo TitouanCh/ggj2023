@@ -31,10 +31,15 @@ func startGeneration(generation):
 	for i in range(numberOfEnemies):
 		if Global.active_upgrades.has("Enemy Swat") and i < 3:
 			spawnEnemy("swat")
+		if Global.active_upgrades.has("+3 Enemies ") and i < 6:
+			#numberOfEnemies = numberOfEnemies + 9
+			spawnEnemy()
+			spawnEnemy()
 		else:
 			spawnEnemy()
 	print("-> " + str(actualNumberOfEnemies) + " Enemies")
 	generation += 1
+	
 
 func spawnPlayer():
 	var a = playerScene.instance()
@@ -54,6 +59,7 @@ func spawnEnemy(type = "melee"):
 	actualNumberOfEnemies += 1
 	a.position = player.position
 	a.setType(type)
+	 
 	
 	while a.position.distance_to(player.position) < minDistanceToPlayer:
 		a.position = Vector2(randf() * roomSize.x, randf() * roomSize.y)
