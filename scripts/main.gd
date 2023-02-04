@@ -43,6 +43,7 @@ func spawnEnemy():
 	var a = enemyScene.instance()
 	self.add_child(a)
 	enemies.append(a)
+	a.player = player
 	actualNumberOfEnemies += 1
 	a.position = player.position
 	
