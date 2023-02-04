@@ -10,6 +10,7 @@ var treeScene = preload("res://scenes/tree.tscn")
 
 var roomSize = Vector2(400, 400)
 var minDistanceToPlayer = 100
+var random = RandomNumberGenerator.new()
 
 var player = null
 var tree = null
@@ -52,6 +53,15 @@ func spawnPlayer():
 		player.attack = player.attack-50
 	if Global.active_upgrades.has("- Mvt") :
 		player.accel = Vector2(400,400)
+	if Global.active_upgrades.has("Bourré") :
+		bourre_function()
+		
+func bourre_function():
+	print("start")
+	yield(get_tree().create_timer(2.0), "timeout")
+	player.accel = Vector2(random.randi_range(200,1200),random.randi_range(200,1200))
+	print("end")
+	return bourre_function()
 
 func spawnEnemy(type = "melee"):
 	var a = enemyScene.instance()
