@@ -21,7 +21,7 @@ var defense = 1
 var meleeRange = 22
 var knockback = 240
 
-func _process(delta):
+func _physics_process(delta):
 	inputs = Vector2.ZERO
 	getInputs()
 	move(delta)
@@ -31,8 +31,9 @@ func getInputs():
 
 func move(delta):
 	velocity += inputs * accel * delta
-	self.position += velocity * delta
 	velocity *= friction
+	
+	velocity = move_and_slide(velocity)
 
 func takeDamage(attacker):
 	health -= attacker.attack - self.defense
