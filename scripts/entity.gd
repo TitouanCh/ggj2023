@@ -67,7 +67,10 @@ func takeDamage(attacker, damageMod = 1, knockbcakMod = 1):
 	velocity -= (attacker.position - self.position).normalized() * knockback * knockbcakMod
 	
 	if health <= 0:
+		get_parent().playSound("mort.wav")
 		die()
+	else:
+		get_parent().playSound("ouch.wav")
 	
 	flicker()
 	
@@ -136,10 +139,11 @@ func makeHeart():
 	heart.position = Vector2 (-12, -19)
 	heart.modulate = healthColor
 
-func playSound(sound):
+func playSound(sound, rand = true):
 	if audio:
 		var a = load("res://sounds/" + sound)
-		if a and !audio.is_playing():
+		if a:
+			if rand: audio.pitch_scale = randf()/10 + 0.9
 			audio.stream = a
 			audio.play()
 			

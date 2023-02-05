@@ -6,6 +6,7 @@ var arms = null
 
 func _ready():
 	sprite = $sprite
+	audio = $audio
 	attack = 10
 	makeHeart()
 
@@ -50,8 +51,11 @@ func getInputs(delta):
 		$particles.process_material.direction = Vector3($particles.position.x, $particles.position.y, 0)
 
 func attack():
-	if type == "melee": meleeAttack(player.global_position - self.global_position, 0.3, 0.4)
+	if type == "melee":
+		get_parent().playSound("coup_ventre_enemies.wav")
+		meleeAttack(player.global_position - self.global_position, 0.3, 0.4)
 	if type == "swat":
+		get_parent().playSound("gun.wav")
 		arms.animation = "attack"
 		arms.playing = true
 		$particles.emitting = true

@@ -11,7 +11,7 @@ func _ready():
 	sprite = $sprite
 	audio = $audio
 	healthColor = Color(0, 255, 0)
-	health = 1
+	health = 100
 	makeHeart()
 
 func getInputs(delta):
@@ -45,7 +45,7 @@ func _draw():
 	draw_rect(Rect2(-10, -20, dashCooldown/dashCooldownMax*20,1), Color(255, 255, 255))
 
 func attack():
-	playSound("amelioration.wav")
+	get_parent().playSound("coup_ventre_enemies.wav")
 	meleeAttack(get_mouse_position_actual(), 0.3, 0)
 
 func get_mouse_position_actual():
@@ -56,6 +56,7 @@ func _on_sprite_animation_finished():
 	if dead: get_parent().restart()
 
 func dash():
+	get_parent().playSound("dash.wav")
 	self.modulate = Color(155, 0 , 155)
 	velocity += get_mouse_position_actual().normalized() * dashPower
 	var a = damageZone.instance()
@@ -68,6 +69,7 @@ func dash():
 	self.modulate = Color(1, 1 , 1)
 
 func die():
+	playSound("mort_principal.wav")
 	print(self.name + " is dead.")
 	sprite.animation = "death"
 	sprite.frame = 0

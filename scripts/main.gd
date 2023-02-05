@@ -17,7 +17,6 @@ var random = RandomNumberGenerator.new()
 var player = null
 var tree = null
 var intro = null
-var audio = null
 
 var numberOfEnemies = 3
 var actualNumberOfEnemies = 0
@@ -30,13 +29,16 @@ var decibelTreeTemp = 0
 var decibelBattle = 0
 var decibelBattleTemp = 0
 
-
+var audios = []
 
 func _ready():
 #	intro = introScene.instance()
 #	add_child(intro)
 	startGeneration(generation)
-	audio = $audio
+	for i in range(10):
+		var a = AudioStreamPlayer.new()
+		self.add_child(a)
+		audios.append(a)
 #	choosePerk()
 	
 
@@ -58,6 +60,7 @@ func startGeneration(generation):
 	for body in bodies:
 		body.destroy()
 	bodies = []
+	enemies = []
 	if player: player.queue_free()
 	print("Start Generation " + str(generation))
 	spawnPlayer()
@@ -123,12 +126,15 @@ func choosePerk():
 	tree.player = player
 	decibelBattle = -69
 
-func playSound(sound):
-	if audio:
-		var a = load("res://sounds/" + sound)
-		if a and audio.playing == false:
-			audio.stream = a
-			audio.play()
+func playSound(sound, rand = true):
+	for a in audios:
+		if !a.is_playing():
+			if rand: a.pitch_scale = randf()/10 + 0.9
+			var l = load("res://sounds/" + sound)
+			if l:
+				a.stream = l
+				a.play()
+			break
 
 func playerDied():
 	for enemy in enemies:
