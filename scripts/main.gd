@@ -56,7 +56,8 @@ func _process(delta):
 	if tree:
 		player.position = player.position.linear_interpolate(Vector2.ZERO, delta * 5)
 	
-	$shader.position = player.position - Vector2(500, 500)
+	if player:
+		$shader.position = player.position - Vector2(500, 500)
 
 func startGeneration(generation):
 	for body in bodies:
@@ -67,15 +68,20 @@ func startGeneration(generation):
 	print("Start Generation " + str(generation))
 	spawnPlayer()
 	numberOfEnemies = 3 + int(Global.active_upgrades.has("+3 Enemies")) * 3
+	
 	for i in range(numberOfEnemies):
 		if Global.active_upgrades.has("Enemy Swat") and i < 3:
-			spawnEnemy("swat")
+			spawnEnemy("swat", i % 3)
 		if Global.active_upgrades.has("+3 Enemies ") and i < 6:
 			#numberOfEnemies = numberOfEnemies + 9
-			spawnEnemy()
-			spawnEnemy()
+			spawnEnemy("melee", i % 3)
+			spawnEnemy("melee", i % 3)
 		else:
-			spawnEnemy()
+			spawnEnemy("melee", i % 3)
+	
+	if Global.active_upgrades.has("Mad Max"):
+		spawnEnemy("madmax", 0)
+	
 	print("-> " + str(actualNumberOfEnemies) + " Enemies")
 	generation += 1
 	decibelBattle = 0
@@ -100,14 +106,14 @@ func bourre_function():
 	player.accel = Vector2(random.randi_range(200,1200),random.randi_range(200,1200))
 	return bourre_function()
 
-func spawnEnemy(type = "melee"):
+func spawnEnemy(type = "melee", i = 0):
 	var a = enemyScene.instance()
 	self.add_child(a)
 	enemies.append(a)
 	a.player = player
 	actualNumberOfEnemies += 1
 	a.position = player.position
-	a.setType(type)
+	a.setType(type, i)
 	 
 	
 	while a.position.distance_to(player.position) < minDistanceToPlayer:
@@ -146,3 +152,6 @@ func playerDied():
 func restart():
 	Global.active_upgrades = []
 	get_tree().change_scene("res://scenes/flask.tscn")
+
+func _on_music_finished():
+	$music.play()

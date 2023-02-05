@@ -112,6 +112,8 @@ func die():
 	sprite.animation = "death"
 	sprite.frame = 0
 	dead = true
+	if arms:
+		arms.visible = false
 	get_parent().playerDied()
 	createBody("player")
 	$deadGround.visible = true

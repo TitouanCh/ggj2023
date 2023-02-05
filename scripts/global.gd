@@ -1,6 +1,6 @@
 extends Node
 
-var active_upgrades = ["Shoot"]
+var active_upgrades = []
 
 var upgrades_desc = {
 	"Enemy Swat" : "The swat is back!",
@@ -9,8 +9,9 @@ var upgrades_desc = {
 	"Less attack" : "Caress mode",
 	"+3 Enemies " : "Too much is never enough again",
 	"Slower movement" : "You won't make old bones ",
-	"Drunk " : "the last beer for the road",
+	"Drunk" : "the last beer for the road",
 	"Inversion" : "You are dislexical",
 	"Shoot" : "The power of Texas",
-	"Less accuracy": "Look! No hands!"
+	"Less accuracy": "Look! No hands!",
+	"Mad Max": "When it's not hard enought"
 }

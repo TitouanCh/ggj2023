@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://sprites/Basic/death3.png" type="Texture" id=1]
 [ext_resource path="res://sprites/Basic/death1.png" type="Texture" id=2]
@@ -6,20 +6,42 @@
 [ext_resource path="res://sprites/Basic/death4.png" type="Texture" id=4]
 [ext_resource path="res://scripts/body.gd" type="Script" id=5]
 [ext_resource path="res://sprites/fx/16circle.png" type="Texture" id=6]
+[ext_resource path="res://sprites/alexandre/alexandre_death2.png" type="Texture" id=7]
+[ext_resource path="res://sprites/alexandre/alexandre_death3.png" type="Texture" id=8]
+[ext_resource path="res://sprites/alexandre/alexandre_death4.png" type="Texture" id=9]
+[ext_resource path="res://sprites/antoine/antoine_death4.png" type="Texture" id=10]
+[ext_resource path="res://sprites/alexandre/alexandre_death1.png" type="Texture" id=11]
+[ext_resource path="res://sprites/titouan/titouan_death2.png" type="Texture" id=12]
+[ext_resource path="res://sprites/titouan/titouan_death3.png" type="Texture" id=13]
+[ext_resource path="res://sprites/titouan/titouan_death4.png" type="Texture" id=14]
+[ext_resource path="res://sprites/antoine/antoine_death1.png" type="Texture" id=15]
+[ext_resource path="res://sprites/antoine/antoine_death2.png" type="Texture" id=16]
+[ext_resource path="res://sprites/antoine/antoine_death3.png" type="Texture" id=17]
+[ext_resource path="res://sprites/titouan/titouan_death1.png" type="Texture" id=18]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 1 ), ExtResource( 4 ) ],
+"frames": [ ExtResource( 18 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ) ],
 "loop": true,
-"name": "deadmelee",
+"name": "deadmelee0",
 "speed": 9.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "deadmelee1",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "deadmelee2",
+"speed": 5.0
 }, {
 "frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 1 ), ExtResource( 4 ) ],
 "loop": true,
 "name": "deadplayer",
 "speed": 16.0
 }, {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 1 ), ExtResource( 4 ) ],
+"frames": [ ExtResource( 18 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ) ],
 "loop": true,
 "name": "deadswat",
 "speed": 9.0
@@ -46,7 +68,7 @@ scale_curve = SubResource( 3 )
 
 [node name="body" type="AnimatedSprite"]
 frames = SubResource( 1 )
-animation = "deadmelee"
+animation = "deadmelee2"
 script = ExtResource( 5 )
 
 [node name="particles" type="Particles2D" parent="."]

@@ -21,8 +21,11 @@ var choix = {
 			"Shoot" : {
 				"Less accuracy" : {}
 			},
+			
+			"Less attack": {
+				"Mad Max": {}
+			},
 			"Less health": {},
-			"Less attack": {},
 		}, 
 	"+3 Enemies": {
 			"+3 Enemies ":{
