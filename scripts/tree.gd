@@ -18,18 +18,18 @@ var incrementY = 30
 var choix = {
 	"Enemy Swat":
 		{
-			"-Pv": {
-				"test8": {},
-				"test9": {}
+			"Shoot" : {
+				"Less accuracy" : {}
 			},
-			"-Atk":{}
+			"Less health": {},
+			"Less attack": {},
 		}, 
 	"+3 Enemies": {
 			"+3 Enemies ":{
-				"Bourré": {},
+				"Drunk": {},
 				"Inversion":{}
 			},
-			"- Mvt":{}
+			"Slower movement":{}
 	}
 	}
 

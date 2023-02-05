@@ -13,6 +13,17 @@ func _ready():
 	healthColor = Color(0, 255, 0)
 	health = 100
 	makeHeart()
+	
+#	if Global.active_upgrades.has("Shoot"):
+#		sprite.frames = load("res://spriteframes/zephra.tres")
+#		var newsprite = AnimatedSprite.new()
+#		self.add_child(newsprite)
+#		arms = newsprite
+#		arms.frames = load("res://spriteframes/zephraArms.tres")
+#		arms.animation = "idle"
+#		arms.flip_h = true
+#		arms.position += Vector2(0, -1)
+#		arms.connect("animation_finished", self, "stopArms")
 
 func getInputs(delta):
 	# - MOVEMENT
@@ -45,8 +56,13 @@ func _draw():
 	draw_rect(Rect2(-10, -20, dashCooldown/dashCooldownMax*20,1), Color(255, 255, 255))
 
 func attack():
-	get_parent().playSound("coup_ventre_enemies.wav")
-	meleeAttack(get_mouse_position_actual(), 0.3, 0)
+	if Global.active_upgrades.has("Shoot") :
+		if Global.active_upgrades.has("Dispersion Tir") :
+			shootAttack(get_mouse_position_actual().rotated((randf()-0.5)/2), 5, 0.5, false)
+		else: shootAttack(get_mouse_position_actual(), 5, 0.5, false)
+	else:
+		get_parent().playSound("coup_ventre_enemies.wav")
+		meleeAttack(get_mouse_position_actual(), 0.3, 0)
 
 func get_mouse_position_actual():
 	return get_global_mouse_position() - self.global_position - Vector2(256, 153)

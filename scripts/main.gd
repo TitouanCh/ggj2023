@@ -84,13 +84,13 @@ func spawnPlayer():
 	self.add_child(a)
 	player = a
 	player.position = Vector2.ZERO
-	if Global.active_upgrades.has("-Pv") :
-		player.healthMax = player.healthMax+80
-	if Global.active_upgrades.has("-Atk") :
-		player.attack = player.attack-50
-	if Global.active_upgrades.has("- Mvt") :
+	if Global.active_upgrades.has("Less health") :
+		player.healthMax = player.healthMax + 80
+	if Global.active_upgrades.has("Less attack") :
+		player.attack = player.attack - 50
+	if Global.active_upgrades.has("Slower movement") :
 		player.accel = Vector2(400,400)
-	if Global.active_upgrades.has("Bourré") :
+	if Global.active_upgrades.has("Drunk") :
 		bourre_function()
 	
 func bourre_function():
@@ -138,7 +138,9 @@ func playSound(sound, rand = true):
 
 func playerDied():
 	for enemy in enemies:
-		if enemy: enemy.queue_free()
+		if enemy is KinematicBody:
+			enemy.queue_free()
 
 func restart():
+	Global.active_upgrades = []
 	get_tree().change_scene("res://scenes/flask.tscn")
