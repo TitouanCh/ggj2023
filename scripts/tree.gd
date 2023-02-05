@@ -38,6 +38,9 @@ func _ready():
 	boucletree+=1
 	createTree(choix)
 
+func startMusic():
+	$music.play()
+
 func _process(delta):
 	if player: self.position = self.position.linear_interpolate(player.position - Vector2(0, Yoffset), delta * 40)
 	update()
