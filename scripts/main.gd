@@ -71,8 +71,6 @@ func spawnPlayer():
 	if Global.active_upgrades.has("Bourré") :
 		bourre_function()
 	
-
-		
 func bourre_function():
 	print("start")
 	yield(get_tree().create_timer(2.0), "timeout")
