@@ -118,4 +118,5 @@ func ability_is_unlocked():
 func playSound(n):
 	get_parent().playSound(n)
 
-
+func _on_music_finished():
+	$music.play()
