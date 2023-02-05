@@ -29,8 +29,8 @@ smoothing_enabled = true
 
 [node name="sprite" type="AnimatedSprite" parent="."]
 frames = ExtResource( 2 )
-animation = "death"
-frame = 8
+animation = "idle"
+frame = 1
 playing = true
 
 [node name="audio" type="AudioStreamPlayer" parent="."]
