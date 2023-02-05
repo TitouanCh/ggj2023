@@ -127,3 +127,11 @@ func makeHeart():
 	heart.texture = lifeImage
 	heart.position = Vector2 (-12, -19)
 	heart.modulate = healthColor
+
+func playSound(sound):
+	if audio:
+		var a = load("res://sounds/" + sound)
+		if a and audio.playing == false:
+			audio.stream = a
+			audio.play()
+			print("yo")

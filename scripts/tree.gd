@@ -110,3 +110,6 @@ func get_desc(id):
 func ability_is_unlocked():
 	if get_parent(): get_parent().startGeneration(get_parent().generation)
 	queue_free()
+
+func playSound(n):
+	get_parent().playSound(n)

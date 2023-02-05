@@ -24,8 +24,8 @@ func _process(delta):
 	elif get_mouse_position_actual().distance_to(global_position) < 16:
 		emit_signal("send_desc", name)
 		
-		
 		if Input.is_action_just_pressed("click") and unlocked and !choosen:
+			playSound("amelioration.wav")
 			choosen = true
 			Global.active_upgrades.append(name)
 			print(Global.active_upgrades)
@@ -55,3 +55,6 @@ func show_desc(id):
 
 func ability_is_unlocked():
 	emit_signal("unlock_ability")
+
+func playSound(n):
+	get_parent().playSound(n)

@@ -17,6 +17,7 @@ func getInputs(delta):
 	# - MOVEMENT
 	if !attacking:
 		if Input.is_action_pressed("left"):
+			playSound("coup_ventre_enemies.wav")
 			inputs.x -= 1
 		
 		if Input.is_action_pressed("right"):

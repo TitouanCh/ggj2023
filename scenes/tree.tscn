@@ -34,3 +34,5 @@ bbcode_enabled = true
 [node name="music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
 bus = "TreeBus"
+
+[node name="audio" type="AudioStreamPlayer" parent="."]
