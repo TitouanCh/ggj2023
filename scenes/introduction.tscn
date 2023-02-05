@@ -1,0 +1,59 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://fonts/fontTheme.tres" type="Theme" id=1]
+[ext_resource path="res://sprites/controls/zqsd1.png" type="Texture" id=2]
+[ext_resource path="res://sprites/controls/zqsd4.png" type="Texture" id=3]
+[ext_resource path="res://sprites/controls/zqsd3.png" type="Texture" id=4]
+[ext_resource path="res://scripts/introduction.gd" type="Script" id=5]
+[ext_resource path="res://sprites/background_0/fond_racines_blanc.png" type="Texture" id=6]
+[ext_resource path="res://sprites/controls/mouse1.png" type="Texture" id=7]
+[ext_resource path="res://sprites/controls/zqsd2.png" type="Texture" id=8]
+[ext_resource path="res://sprites/controls/mouse2.png" type="Texture" id=9]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 8 ), ExtResource( 4 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "keys",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 9 ) ],
+"loop": true,
+"name": "souris1",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ) ],
+"loop": true,
+"name": "souris2",
+"speed": 5.0
+} ]
+
+[node name="introduction" type="Node2D"]
+script = ExtResource( 5 )
+
+[node name="title" type="RichTextLabel" parent="."]
+margin_left = 164.0
+margin_top = 170.0
+margin_right = 368.0
+margin_bottom = 270.0
+theme = ExtResource( 1 )
+bbcode_enabled = true
+bbcode_text = "[wave amp=20 freq=2][center][b]Tree Game[/b]
+click to start[/center][/wave]"
+text = "Tree Game
+click to start"
+
+[node name="sprite" type="AnimatedSprite" parent="."]
+visible = false
+position = Vector2( 266, 205 )
+scale = Vector2( 2, 2 )
+frames = SubResource( 1 )
+animation = "keys"
+frame = 2
+playing = true
+
+[node name="roots" type="Sprite" parent="."]
+position = Vector2( 256, 75 )
+scale = Vector2( 0.5, 0.5 )
+z_index = -10
+texture = ExtResource( 6 )

@@ -3,6 +3,8 @@ extends Node2D
 
 var generation = 0
 
+var introScene = preload("res://scenes/introduction.tscn")
+
 var enemyScene = preload("res://scenes/enemy.tscn")
 var playerScene = preload("res://scenes/player.tscn")
 
@@ -14,6 +16,7 @@ var random = RandomNumberGenerator.new()
 
 var player = null
 var tree = null
+var intro = null
 
 var numberOfEnemies = 3
 var actualNumberOfEnemies = 0
@@ -25,10 +28,18 @@ var decibelTreeTemp = 0
 var decibelBattle = 0
 var decibelBattleTemp = 0
 
+
+
 func _ready():
-	startGeneration(generation)
+	intro = introScene.instance()
+	add_child(intro)
+	
+#	startGeneration(generation)
 	
 #	choosePerk()
+
+func startMusic():
+	$music.play()
 
 func _process(delta):
 	# - AUDIO
