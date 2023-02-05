@@ -35,11 +35,18 @@ var attacking = false
 var shootMod = 1
 
 var regen = 2
-
+var vide = false
 
 func _process(delta):
 	healthAnimation = lerp(healthAnimation, health, delta * 10)
 	update()
+	if !vide:
+		if abs(position.x) > 601:
+			vide = true
+			takeDamage(get_parent().player, 100, 100)
+		if abs(position.y) > 451:
+			vide = true
+			takeDamage(get_parent().player, 100, 100)
 	health += regen * delta
 	if health > healthMax: health = healthMax
 

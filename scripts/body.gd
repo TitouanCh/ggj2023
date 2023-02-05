@@ -1,6 +1,7 @@
 extends AnimatedSprite
 
 var destroy = false
+var vide = false
 
 func _ready():
 	get_parent().bodies.append(self)
@@ -13,6 +14,15 @@ func _process(delta):
 	self.modulate = self.modulate.linear_interpolate(Color(0.5, 0.5, 0.5), delta * 2)
 	if destroy:
 		self.modulate = self.modulate.linear_interpolate(Color(0, 0, 0, 0), delta * 6)
+	
+	if vide:
+		self.position += self.position.normalized() * delta * 10
+	
+	if !vide:
+		if abs(position.x) >= 600:
+			vide = true
+		if abs(position.y) >= 450:
+			vide = true
 
 func destroy():
 	$particles.emitting = true
