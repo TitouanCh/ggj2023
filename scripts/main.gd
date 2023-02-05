@@ -55,6 +55,8 @@ func _process(delta):
 	
 	if tree:
 		player.position = player.position.linear_interpolate(Vector2.ZERO, delta * 5)
+	
+	$shader.position = player.position - Vector2(500, 500)
 
 func startGeneration(generation):
 	for body in bodies:
