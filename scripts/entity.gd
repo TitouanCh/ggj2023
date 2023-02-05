@@ -66,7 +66,7 @@ func getInputs(delta):
 
 func move(delta):
 	# - SPRITE
-	if inputs.x != 0: sprite.flip_h = inputs.x < 0
+	if inputs.x != 0 and !attacking: sprite.flip_h = inputs.x < 0
 	
 	# - MVT
 	velocity += inputs * accel * delta
