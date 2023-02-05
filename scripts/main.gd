@@ -19,10 +19,24 @@ var numberOfEnemies = 3
 var actualNumberOfEnemies = 0
 var enemies = []
 
+var decibelTree = 0
+var decibelTreeTemp = 0
+
+var decibelBattle = 0
+var decibelBattleTemp = 0
+
 func _ready():
 	startGeneration(generation)
 	
 #	choosePerk()
+
+func _process(delta):
+	# - AUDIO
+	AudioServer.set_bus_volume_db(2, decibelBattleTemp)
+	decibelBattleTemp = lerp(decibelBattleTemp, decibelBattle, delta * 10)
+	
+	AudioServer.set_bus_volume_db(1, decibelTreeTemp)
+	decibelTreeTemp = lerp(decibelTreeTemp, decibelTree, delta * 10)
 
 func startGeneration(generation):
 	if player: player.queue_free()
@@ -40,6 +54,7 @@ func startGeneration(generation):
 			spawnEnemy()
 	print("-> " + str(actualNumberOfEnemies) + " Enemies")
 	generation += 1
+	decibelBattle = 0
 	
 
 func spawnPlayer():
@@ -89,4 +104,4 @@ func choosePerk():
 	player.visible = false
 	self.add_child(tree)
 	tree.player = player
-
+	decibelBattle = -69

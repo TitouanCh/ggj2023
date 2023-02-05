@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scripts/tree.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
 [ext_resource path="res://fonts/fontTheme.tres" type="Theme" id=3]
+[ext_resource path="res://musics/AGAGOUGjam.wav" type="AudioStream" id=4]
 
 [node name="tree" type="Node2D"]
 script = ExtResource( 1 )
@@ -29,3 +30,8 @@ margin_top = 120.0
 margin_bottom = 220.0
 theme = ExtResource( 3 )
 bbcode_enabled = true
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+autoplay = true
+bus = "TreeBus"
