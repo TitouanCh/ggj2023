@@ -89,7 +89,9 @@ func attack():
 func meleeAttack(target, windUpTime, windDownTime):
 	attacking = true
 	sprite.animation = "attack"
+	playSound("coup_ventre_principale.wav")
 	sprite.flip_h = target.x < 0
+
 	
 	yield(get_tree().create_timer(windUpTime), "timeout")
 	var a = damageZone.instance()
@@ -134,4 +136,5 @@ func playSound(sound):
 		if a and audio.playing == false:
 			audio.stream = a
 			audio.play()
+			audio.stop()
 			print("yo")

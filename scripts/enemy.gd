@@ -7,7 +7,6 @@ var arms = null
 func _ready():
 	sprite = $sprite
 	attack = 10
-	audio = $audio
 	makeHeart()
 
 func setType(t):
