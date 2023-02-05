@@ -93,7 +93,7 @@ func meleeAttack(target, windUpTime, windDownTime):
 	
 	attacking = false
 
-func shootAttack(target, speed = 5, wind = 1, windrand = true):
+func shootAttack(target, speed = 5, wind = 1):
 	attacking = true
 	sprite.animation = "attack"
 	var bullet = bulletScene.instance()
@@ -101,8 +101,7 @@ func shootAttack(target, speed = 5, wind = 1, windrand = true):
 	bullet.linear_velocity = target.normalized() * speed * 100
 	self.add_child(bullet)
 	
-	if windrand: wind += randf()
-	yield(get_tree().create_timer(wind), "timeout")
+	yield(get_tree().create_timer(wind + randf()), "timeout")
 	sprite.animation = "idle"
 	attacking = false
 	

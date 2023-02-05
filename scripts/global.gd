@@ -10,7 +10,5 @@ var upgrades_desc = {
 	"+3 Enemies " : "None",
 	"- Mvt " : "None",
 	"Bourré " : "None",
-	"Inversion" : "None",
-	"Tir" : "None",
-	"Dispersion Tir" : "None"
+	"Inversion" : "None"
 }
