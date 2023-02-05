@@ -16,6 +16,7 @@ func _process(delta):
 		changeSlide(slide)
 		if slide == 4:
 			get_parent().startGeneration(0)
+			get_parent().intro = null
 			self.queue_free()
 	
 	

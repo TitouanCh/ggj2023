@@ -38,9 +38,9 @@ margin_right = 368.0
 margin_bottom = 270.0
 theme = ExtResource( 1 )
 bbcode_enabled = true
-bbcode_text = "[wave amp=20 freq=2][center][b]Tree Game[/b]
+bbcode_text = "[wave amp=20 freq=2][center][b]Botanical Survivor[/b]
 click to start[/center][/wave]"
-text = "Tree Game
+text = "Botanical Survivor
 click to start"
 
 [node name="sprite" type="AnimatedSprite" parent="."]
@@ -49,6 +49,7 @@ position = Vector2( 266, 205 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 1 )
 animation = "keys"
+frame = 1
 playing = true
 
 [node name="roots" type="Sprite" parent="."]
