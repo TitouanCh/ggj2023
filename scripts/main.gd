@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 extends Node2D
 
 
@@ -105,3 +107,4 @@ func choosePerk():
 	self.add_child(tree)
 	tree.player = player
 	decibelBattle = -69
+>>>>>>> f09e0ea17fcb5a66685f4221faff5a4be4e20518

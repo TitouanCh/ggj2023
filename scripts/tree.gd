@@ -22,7 +22,10 @@ var choix = {
 				"test8": {},
 				"test9": {}
 			},
-			"-Atk":{}
+			"-Atk":{},
+			"Tir":{
+				"Inversion Tir":{}
+			}
 		}, 
 	"+3 Enemies": {
 			"+3 Enemies ":{
