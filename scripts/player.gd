@@ -5,6 +5,8 @@ var dashCooldownMax = 1
 var dashCooldown = 0
 var dashing = false
 
+var arms = null
+
 func _ready():
 	attack = 100
 	accel = Vector2(1000, 1000)
@@ -12,18 +14,23 @@ func _ready():
 	audio = $audio
 	healthColor = Color(0, 255, 0)
 	health = 100
+	shootMod = 0.2
 	makeHeart()
 	
-#	if Global.active_upgrades.has("Shoot"):
-#		sprite.frames = load("res://spriteframes/zephra.tres")
-#		var newsprite = AnimatedSprite.new()
-#		self.add_child(newsprite)
-#		arms = newsprite
-#		arms.frames = load("res://spriteframes/zephraArms.tres")
-#		arms.animation = "idle"
-#		arms.flip_h = true
-#		arms.position += Vector2(0, -1)
-#		arms.connect("animation_finished", self, "stopArms")
+	if Global.active_upgrades.has("Shoot"):
+		sprite.frames = load("res://spriteframes/playerShoot.tres")
+
+
+		var newsprite = AnimatedSprite.new()
+		self.add_child(newsprite)
+		arms = newsprite
+		arms.frames = load("res://spriteframes/playerArms.tres")
+		arms.animation = "idle"
+#		arms.flip_v = true
+		arms.position += Vector2(0, -2)
+		arms.connect("animation_finished", self, "stopArms")
+	else:
+		sprite.frames = load("res://spriteframes/player.tres")
 
 func getInputs(delta):
 	# - MOVEMENT
@@ -45,21 +52,36 @@ func getInputs(delta):
 			dashCooldown = 0
 	
 		# - ATTACK
-		if Input.is_action_just_pressed("attack"):
-			attack()
+		if Global.active_upgrades.has("Shoot"):
+			if Input.is_action_pressed("attack"):
+				attack()
+			else:
+				arms.animation = "idle"
+		else:
+			if Input.is_action_just_pressed("attack"):
+				attack()
 	
 	dashCooldown += delta
 	if dashCooldown > dashCooldownMax: dashCooldown = dashCooldownMax
+	
+	if arms:
+		arms.flip_v = get_mouse_position_actual().normalized().x < 0
+		arms.rotation = lerp_angle(arms.rotation, get_mouse_position_actual().angle(), delta * 5)
 
 func _draw():
 	drawHealthBar()
 	draw_rect(Rect2(-10, -20, dashCooldown/dashCooldownMax*20,1), Color(255, 255, 255))
 
 func attack():
-	if Global.active_upgrades.has("Shoot") :
+	if Global.active_upgrades.has("Shoot"):
+		get_parent().playSound("gun.wav")
+		if arms:
+			arms.animation = "attack"
+			arms.playing = true
+		sprite.flip_h = get_mouse_position_actual().x < 0
 		if Global.active_upgrades.has("Dispersion Tir") :
-			shootAttack(get_mouse_position_actual().rotated((randf()-0.5)/2), 5, 0.5, false)
-		else: shootAttack(get_mouse_position_actual(), 5, 0.5, false)
+			shootAttack(get_mouse_position_actual().rotated((randf()-0.5)/2), 5, 0.2, false)
+		else: shootAttack(get_mouse_position_actual(), 5, 0.2, false)
 	else:
 		get_parent().playSound("coup_ventre_enemies.wav")
 		meleeAttack(get_mouse_position_actual(), 0.3, 0)

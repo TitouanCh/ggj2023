@@ -140,7 +140,7 @@ func playSound(sound, rand = true):
 
 func playerDied():
 	for enemy in enemies:
-		if enemy is KinematicBody:
+		if is_instance_valid(enemy):
 			enemy.queue_free()
 
 func restart():

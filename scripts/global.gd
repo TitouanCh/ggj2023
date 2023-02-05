@@ -1,6 +1,6 @@
 extends Node
 
-var active_upgrades = []
+var active_upgrades = ["Shoot"]
 
 var upgrades_desc = {
 	"Enemy Swat" : "The swat is back!",

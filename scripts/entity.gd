@@ -32,11 +32,16 @@ var dead = false
 var meleeRange = 22
 var knockback = 240
 var attacking = false
+var shootMod = 1
+
+var regen = 2
 
 
 func _process(delta):
 	healthAnimation = lerp(healthAnimation, health, delta * 10)
 	update()
+	health += regen * delta
+	if health > healthMax: health = healthMax
 
 func _physics_process(delta):
 	inputs = Vector2.ZERO

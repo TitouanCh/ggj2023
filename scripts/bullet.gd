@@ -17,5 +17,5 @@ func _on_Area2D_body_entered(body):
 	if body != self:
 		$sprite.modulate = Color(0, 0, 0)
 		if body is KinematicBody2D and damaging:
-			body.takeDamage(get_parent())
+			body.takeDamage(get_parent(), get_parent().shootMod)
 			damaging = false
