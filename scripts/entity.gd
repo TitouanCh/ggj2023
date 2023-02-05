@@ -23,12 +23,14 @@ var attack = 25
 var defense = 1
 
 var sprite = null
-var heart= null
+var heart = null
+var audio = null
 
 # - Specific Attributes
 var meleeRange = 22
 var knockback = 240
 var attacking = false
+
 
 func _process(delta):
 	healthAnimation = lerp(healthAnimation, health, delta * 10)
@@ -37,6 +39,11 @@ func _process(delta):
 func _physics_process(delta):
 	inputs = Vector2.ZERO
 	getInputs(delta)
+	if !attacking:
+		if inputs != Vector2.ZERO:
+			sprite.animation = "walk"
+		else:
+			sprite.animation = "idle"
 	move(delta)
 	z_index = position.y
 

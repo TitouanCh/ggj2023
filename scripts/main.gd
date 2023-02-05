@@ -31,12 +31,11 @@ var decibelBattleTemp = 0
 
 
 func _ready():
-	intro = introScene.instance()
-	add_child(intro)
-	
-#	startGeneration(generation)
-	
+#	intro = introScene.instance()
+#	add_child(intro)
+	startGeneration(generation)
 #	choosePerk()
+	
 
 func startMusic():
 	$music.play()
@@ -83,10 +82,8 @@ func spawnPlayer():
 		bourre_function()
 	
 func bourre_function():
-	print("start")
 	yield(get_tree().create_timer(2.0), "timeout")
 	player.accel = Vector2(random.randi_range(200,1200),random.randi_range(200,1200))
-	print("end")
 	return bourre_function()
 
 func spawnEnemy(type = "melee"):

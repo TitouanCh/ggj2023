@@ -9,6 +9,7 @@ func _ready():
 	attack = 100
 	accel = Vector2(1000, 1000)
 	sprite = $sprite
+	audio = $audio
 	healthColor = Color(0, 255, 0)
 	makeHeart()
 
@@ -49,7 +50,7 @@ func get_mouse_position_actual():
 	return get_global_mouse_position() - self.global_position - Vector2(256, 153)
 
 func _on_sprite_animation_finished():
-	$sprite.animation = "idle"
+	if attacking: $sprite.animation = "idle"
 
 func dash():
 	self.modulate = Color(155, 0 , 155)

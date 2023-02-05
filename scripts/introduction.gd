@@ -6,7 +6,6 @@ var Tdelta = 0
 func _process(delta):
 	if Input.is_action_just_pressed("click") and slide == 0:
 		slide = 1
-		print("y")
 		$sprite.visible = true
 		get_parent().startMusic()
 		changeSlide(slide)
