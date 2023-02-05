@@ -97,12 +97,8 @@ func attack():
 
 func meleeAttack(target, windUpTime, windDownTime):
 	attacking = true
-	playSound("amelioration.wav")
 	sprite.animation = "attack"
-	playSound("coup_ventre_principale.wav")
 	sprite.flip_h = target.x < 0
-
-	
 	yield(get_tree().create_timer(windUpTime), "timeout")
 	var a = damageZone.instance()
 	self.add_child(a)

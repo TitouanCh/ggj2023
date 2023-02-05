@@ -45,6 +45,7 @@ func _draw():
 	draw_rect(Rect2(-10, -20, dashCooldown/dashCooldownMax*20,1), Color(255, 255, 255))
 
 func attack():
+	playSound("amelioration.wav")
 	meleeAttack(get_mouse_position_actual(), 0.3, 0)
 
 func get_mouse_position_actual():

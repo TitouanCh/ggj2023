@@ -49,7 +49,6 @@ position = Vector2( 266, 205 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 1 )
 animation = "keys"
-frame = 1
 playing = true
 
 [node name="roots" type="Sprite" parent="."]
