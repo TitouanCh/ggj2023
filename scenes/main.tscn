@@ -75,6 +75,7 @@ z_index = 4096
 [node name="shader" parent="shader" instance=ExtResource( 4 )]
 
 [node name="shader2" type="ColorRect" parent="shader"]
+visible = false
 material = SubResource( 2 )
 margin_right = 1000.0
 margin_bottom = 1000.0

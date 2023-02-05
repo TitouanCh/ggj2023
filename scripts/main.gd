@@ -32,9 +32,9 @@ var decibelBattleTemp = 0
 var audios = []
 
 func _ready():
-#	intro = introScene.instance()
-#	add_child(intro)
-	startGeneration(generation)
+	intro = introScene.instance()
+	add_child(intro)
+#	startGeneration(generation)
 	for i in range(10):
 		var a = AudioStreamPlayer.new()
 		self.add_child(a)
