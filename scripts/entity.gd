@@ -5,6 +5,7 @@ class_name Entity
 # - Scenes
 var damageZone = preload("res://scenes/damageZone.tscn")
 var fx = preload("res://scenes/fx.tscn")
+var body = preload("res://scenes/body.tscn")
 var bulletScene = preload("res://scenes/bullet.tscn")
 var lifeImage = preload("res://sprites/fx/coeur.png")
 
@@ -25,6 +26,7 @@ var defense = 1
 var sprite = null
 var heart = null
 var audio = null
+var dead = false
 
 # - Specific Attributes
 var meleeRange = 22
@@ -39,7 +41,7 @@ func _process(delta):
 func _physics_process(delta):
 	inputs = Vector2.ZERO
 	getInputs(delta)
-	if !attacking:
+	if !attacking and !dead:
 		if inputs != Vector2.ZERO:
 			sprite.animation = "walk"
 		else:
@@ -81,13 +83,21 @@ func die():
 	var s = fx.instance()
 	get_parent().add_child(s)
 	s.global_position = self.position - Vector2(8, 8)
+	createBody("player")
 	queue_free()
+
+func createBody(type):
+	var b = body.instance()
+	get_parent().add_child(b)
+	b.global_position = self.position
+	b.play("dead" + type)
 
 func attack():
 	get_global_mouse_position()
 
 func meleeAttack(target, windUpTime, windDownTime):
 	attacking = true
+	playSound("amelioration.wav")
 	sprite.animation = "attack"
 	sprite.flip_h = target.x < 0
 	
@@ -131,7 +141,8 @@ func makeHeart():
 func playSound(sound):
 	if audio:
 		var a = load("res://sounds/" + sound)
-		if a and audio.playing == false:
+		if a and !audio.is_playing():
 			audio.stream = a
 			audio.play()
-			print("yo")
+			
+

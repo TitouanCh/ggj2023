@@ -22,6 +22,7 @@ var audio = null
 var numberOfEnemies = 3
 var actualNumberOfEnemies = 0
 var enemies = []
+var bodies = []
 
 var decibelTree = 0
 var decibelTreeTemp = 0
@@ -49,8 +50,14 @@ func _process(delta):
 	
 	AudioServer.set_bus_volume_db(1, decibelTreeTemp)
 	decibelTreeTemp = lerp(decibelTreeTemp, decibelTree, delta * 10)
+	
+	if tree:
+		player.position = player.position.linear_interpolate(Vector2.ZERO, delta * 5)
 
 func startGeneration(generation):
+	for body in bodies:
+		body.destroy()
+	bodies = []
 	if player: player.queue_free()
 	print("Start Generation " + str(generation))
 	spawnPlayer()
@@ -73,7 +80,7 @@ func spawnPlayer():
 	var a = playerScene.instance()
 	self.add_child(a)
 	player = a
-	player.position = roomSize/2
+	player.position = Vector2.ZERO
 	if Global.active_upgrades.has("-Pv") :
 		player.healthMax = player.healthMax+80
 	if Global.active_upgrades.has("-Atk") :
@@ -99,7 +106,7 @@ func spawnEnemy(type = "melee"):
 	 
 	
 	while a.position.distance_to(player.position) < minDistanceToPlayer:
-		a.position = Vector2(randf() * roomSize.x, randf() * roomSize.y)
+		a.position = Vector2(randf() * roomSize.x, randf() * roomSize.y) - roomSize/2
 	
 	print("-- Spawned enemy at : " + str(a.position))
 
@@ -122,3 +129,10 @@ func playSound(sound):
 		if a and audio.playing == false:
 			audio.stream = a
 			audio.play()
+
+func playerDied():
+	for enemy in enemies:
+		if enemy: enemy.queue_free()
+
+func restart():
+	get_tree().change_scene("res://scenes/flask.tscn")

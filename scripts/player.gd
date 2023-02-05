@@ -11,15 +11,15 @@ func _ready():
 	sprite = $sprite
 	audio = $audio
 	healthColor = Color(0, 255, 0)
+	health = 1
 	makeHeart()
 
 func getInputs(delta):
 	# - MOVEMENT
 	if !attacking:
 		if Input.is_action_pressed("left"):
-			playSound("coup_ventre_enemies.wav")
+#			playSound("coup_ventre_enemies.wav")
 			inputs.x -= 1
-		
 		if Input.is_action_pressed("right"):
 			inputs.x += 1
 		if Input.is_action_pressed("up"):
@@ -51,7 +51,8 @@ func get_mouse_position_actual():
 	return get_global_mouse_position() - self.global_position - Vector2(256, 153)
 
 func _on_sprite_animation_finished():
-	if attacking: $sprite.animation = "idle"
+	if attacking and !dead: $sprite.animation = "idle"
+	if dead: get_parent().restart()
 
 func dash():
 	self.modulate = Color(155, 0 , 155)
@@ -64,3 +65,20 @@ func dash():
 	self.add_child(a)
 	yield(get_tree().create_timer(0.2), "timeout")
 	self.modulate = Color(1, 1 , 1)
+
+func die():
+	print(self.name + " is dead.")
+	sprite.animation = "death"
+	sprite.frame = 0
+	dead = true
+	get_parent().playerDied()
+	createBody("player")
+	$deadGround.visible = true
+	yield(get_tree().create_timer(0.1), "timeout")
+	$deadGround.color = Color(255, 255, 255)
+	yield(get_tree().create_timer(0.1), "timeout")
+	$deadGround.color = Color(0, 0, 0)
+#	var s = fx.instance()
+#	get_parent().add_child(s)
+#	s.global_position = self.position - Vector2(8, 8)
+	

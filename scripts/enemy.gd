@@ -67,6 +67,7 @@ func die():
 	var s = fx.instance()
 	get_parent().add_child(s)
 	s.global_position = self.position - Vector2(8, 8)
+	createBody(type)
 	queue_free()
 
 func _on_sprite_animation_finished():
