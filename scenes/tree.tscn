@@ -35,3 +35,7 @@ bbcode_enabled = true
 stream = ExtResource( 4 )
 autoplay = true
 bus = "TreeBus"
+
+[node name="audio" type="AudioStreamPlayer" parent="."]
+
+[connection signal="finished" from="music" to="." method="_on_music_finished"]

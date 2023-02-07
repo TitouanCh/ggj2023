@@ -18,18 +18,21 @@ var incrementY = 30
 var choix = {
 	"Enemy Swat":
 		{
-			"-Pv": {
-				"test8": {},
-				"test9": {}
+			"Shoot" : {
+				"Less accuracy" : {}
 			},
-			"-Atk":{}
+			
+			"Less attack": {
+				"Mad Max": {}
+			},
+			"Less health": {},
 		}, 
 	"+3 Enemies": {
 			"+3 Enemies ":{
-				"Bourré": {},
+				"Drunk": {},
 				"Inversion":{}
 			},
-			"- Mvt":{}
+			"Slower movement":{}
 	}
 	}
 
@@ -37,6 +40,9 @@ func _ready():
 	
 	boucletree+=1
 	createTree(choix)
+
+func startMusic():
+	$music.play()
 
 func _process(delta):
 	if player: self.position = self.position.linear_interpolate(player.position - Vector2(0, Yoffset), delta * 40)
@@ -106,4 +112,11 @@ func get_desc(id):
 
 func ability_is_unlocked():
 	if get_parent(): get_parent().startGeneration(get_parent().generation)
+	get_parent().tree = null
 	queue_free()
+
+func playSound(n):
+	get_parent().playSound(n)
+
+func _on_music_finished():
+	$music.play()

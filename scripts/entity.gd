@@ -5,6 +5,7 @@ class_name Entity
 # - Scenes
 var damageZone = preload("res://scenes/damageZone.tscn")
 var fx = preload("res://scenes/fx.tscn")
+var body = preload("res://scenes/body.tscn")
 var bulletScene = preload("res://scenes/bullet.tscn")
 var lifeImage = preload("res://sprites/fx/coeur.png")
 
@@ -23,20 +24,40 @@ var attack = 25
 var defense = 1
 
 var sprite = null
-var heart= null
+var heart = null
+var audio = null
+var dead = false
 
 # - Specific Attributes
 var meleeRange = 22
 var knockback = 240
 var attacking = false
+var shootMod = 1
+
+var regen = 2
+var vide = false
 
 func _process(delta):
 	healthAnimation = lerp(healthAnimation, health, delta * 10)
 	update()
+	if !vide:
+		if abs(position.x) > 601:
+			vide = true
+			takeDamage(get_parent().player, 100, 100)
+		if abs(position.y) > 451:
+			vide = true
+			takeDamage(get_parent().player, 100, 100)
+	health += regen * delta
+	if health > healthMax: health = healthMax
 
 func _physics_process(delta):
 	inputs = Vector2.ZERO
 	getInputs(delta)
+	if !attacking and !dead:
+		if inputs != Vector2.ZERO:
+			sprite.animation = "walk"
+		else:
+			sprite.animation = "idle"
 	move(delta)
 	z_index = position.y
 
@@ -45,7 +66,7 @@ func getInputs(delta):
 
 func move(delta):
 	# - SPRITE
-	if inputs.x != 0: sprite.flip_h = inputs.x < 0
+	if inputs.x != 0 and !attacking: sprite.flip_h = inputs.x < 0
 	
 	# - MVT
 	velocity += inputs * accel * delta
@@ -58,7 +79,10 @@ func takeDamage(attacker, damageMod = 1, knockbcakMod = 1):
 	velocity -= (attacker.position - self.position).normalized() * knockback * knockbcakMod
 	
 	if health <= 0:
+		get_parent().playSound("mort.wav")
 		die()
+	else:
+		get_parent().playSound("ouch.wav")
 	
 	flicker()
 	
@@ -74,7 +98,14 @@ func die():
 	var s = fx.instance()
 	get_parent().add_child(s)
 	s.global_position = self.position - Vector2(8, 8)
+	createBody("player")
 	queue_free()
+
+func createBody(type):
+	var b = body.instance()
+	get_parent().add_child(b)
+	b.global_position = self.position
+	b.play("dead" + type)
 
 func attack():
 	get_global_mouse_position()
@@ -83,7 +114,6 @@ func meleeAttack(target, windUpTime, windDownTime):
 	attacking = true
 	sprite.animation = "attack"
 	sprite.flip_h = target.x < 0
-	
 	yield(get_tree().create_timer(windUpTime), "timeout")
 	var a = damageZone.instance()
 	self.add_child(a)
@@ -93,7 +123,7 @@ func meleeAttack(target, windUpTime, windDownTime):
 	
 	attacking = false
 
-func shootAttack(target, speed = 5, wind = 1):
+func shootAttack(target, speed = 5, wind = 1, windrand = true):
 	attacking = true
 	sprite.animation = "attack"
 	var bullet = bulletScene.instance()
@@ -101,7 +131,8 @@ func shootAttack(target, speed = 5, wind = 1):
 	bullet.linear_velocity = target.normalized() * speed * 100
 	self.add_child(bullet)
 	
-	yield(get_tree().create_timer(wind + randf()), "timeout")
+	if windrand: wind += randf()
+	yield(get_tree().create_timer(wind), "timeout")
 	sprite.animation = "idle"
 	attacking = false
 	
@@ -120,3 +151,13 @@ func makeHeart():
 	heart.texture = lifeImage
 	heart.position = Vector2 (-12, -19)
 	heart.modulate = healthColor
+
+func playSound(sound, rand = true):
+	if audio:
+		var a = load("res://sounds/" + sound)
+		if a:
+			if rand: audio.pitch_scale = randf()/10 + 0.9
+			audio.stream = a
+			audio.play()
+			
+
