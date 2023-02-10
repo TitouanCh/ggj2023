@@ -1,8 +1,9 @@
 [gd_resource type="SpriteFrames" load_steps=4 format=2]
 
-[ext_resource path="res://sprites/swat_gabz/shooting1_body2.png" type="Texture" id=1]
-[ext_resource path="res://sprites/swat_gabz/shooting1_body3.png" type="Texture" id=2]
-[ext_resource path="res://sprites/swat_gabz/shooting1_body1.png" type="Texture" id=3]
+[ext_resource path="res://sprites/entities/swatGabz/shooting1_body2.png" type="Texture" id=1]
+[ext_resource path="res://sprites/entities/swatGabz/shooting1_body3.png" type="Texture" id=2]
+[ext_resource path="res://sprites/entities/swatGabz/shooting1_body1.png" type="Texture" id=3]
+
 
 [resource]
 animations = [ {

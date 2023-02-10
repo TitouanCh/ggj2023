@@ -1,9 +1,10 @@
 [gd_resource type="SpriteFrames" load_steps=5 format=2]
 
-[ext_resource path="res://sprites/swat_alexander/arms1.png" type="Texture" id=1]
-[ext_resource path="res://sprites/swat_alexander/arms2.png" type="Texture" id=2]
-[ext_resource path="res://sprites/swat_alexander/arms3.png" type="Texture" id=3]
-[ext_resource path="res://sprites/swat_alexander/arms4.png" type="Texture" id=4]
+[ext_resource path="res://sprites/entities/madMaxAlexander/arms1.png" type="Texture" id=1]
+[ext_resource path="res://sprites/entities/madMaxAlexander/arms2.png" type="Texture" id=2]
+[ext_resource path="res://sprites/entities/madMaxAlexander/arms3.png" type="Texture" id=3]
+[ext_resource path="res://sprites/entities/madMaxAlexander/arms4.png" type="Texture" id=4]
+
 
 [resource]
 animations = [ {

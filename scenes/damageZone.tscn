@@ -1,16 +1,17 @@
 [gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scripts/damageZone.gd" type="Script" id=1]
-[ext_resource path="res://sprites/fx/punch1.png" type="Texture" id=2]
-[ext_resource path="res://sprites/fx/punch2.png" type="Texture" id=3]
-[ext_resource path="res://sprites/fx/punch4.png" type="Texture" id=4]
-[ext_resource path="res://sprites/fx/punch6.png" type="Texture" id=5]
-[ext_resource path="res://sprites/fx/punch5.png" type="Texture" id=6]
-[ext_resource path="res://sprites/fx/punch7.png" type="Texture" id=7]
-[ext_resource path="res://sprites/fx/punch8.png" type="Texture" id=8]
-[ext_resource path="res://sprites/fx/punch9.png" type="Texture" id=9]
-[ext_resource path="res://sprites/fx/punch10.png" type="Texture" id=10]
-[ext_resource path="res://sprites/fx/punch3.png" type="Texture" id=11]
+[ext_resource path="res://sprites/fx/punch/punch1.png" type="Texture" id=2]
+[ext_resource path="res://sprites/fx/punch/punch2.png" type="Texture" id=3]
+[ext_resource path="res://sprites/fx/punch/punch4.png" type="Texture" id=4]
+[ext_resource path="res://sprites/fx/punch/punch6.png" type="Texture" id=5]
+[ext_resource path="res://sprites/fx/punch/punch5.png" type="Texture" id=6]
+[ext_resource path="res://sprites/fx/punch/punch7.png" type="Texture" id=7]
+[ext_resource path="res://sprites/fx/punch/punch8.png" type="Texture" id=8]
+[ext_resource path="res://sprites/fx/punch/punch9.png" type="Texture" id=9]
+[ext_resource path="res://sprites/fx/punch/punch10.png" type="Texture" id=10]
+[ext_resource path="res://sprites/fx/punch/punch3.png" type="Texture" id=11]
+
 
 [sub_resource type="CircleShape2D" id=1]
 
