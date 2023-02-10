@@ -18,19 +18,18 @@ func _ready():
 	makeHeart()
 	
 	if Global.active_upgrades.has("Shoot"):
-		sprite.frames = load("res://spriteframes/playerShoot.tres")
-
+		sprite.frames = load("res://spriteframes/playerPlantShoot.tres")
 
 		var newsprite = AnimatedSprite.new()
 		self.add_child(newsprite)
 		arms = newsprite
-		arms.frames = load("res://spriteframes/playerArms.tres")
+		arms.frames = load("res://spriteframes/playerPlantArms.tres")
 		arms.animation = "idle"
 #		arms.flip_v = true
 		arms.position += Vector2(0, -2)
 		arms.connect("animation_finished", self, "stopArms")
 	else:
-		sprite.frames = load("res://spriteframes/player.tres")
+		sprite.frames = load("res://spriteframes/playerPlant.tres")
 
 func getInputs(delta):
 	# - MOVEMENT

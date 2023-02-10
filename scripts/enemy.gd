@@ -15,9 +15,9 @@ func setType(t, i = randi() % 3):
 	type = t
 	bodyType = i
 	if type == "melee":
-		if i == 0: sprite.frames = load("res://spriteframes/titouan.tres")
-		if i == 1: sprite.frames = load("res://spriteframes/alexandre.tres")
-		if i == 2: sprite.frames = load("res://spriteframes/antoine.tres")
+		if i == 0: sprite.frames = load("res://spriteframes/meleeTitouan.tres")
+		if i == 1: sprite.frames = load("res://spriteframes/meleeAlexandre.tres")
+		if i == 2: sprite.frames = load("res://spriteframes/meleeAntoine.tres")
 	if type == "swat":
 		var newsprite = AnimatedSprite.new()
 		self.add_child(newsprite)
@@ -33,12 +33,12 @@ func setType(t, i = randi() % 3):
 		bodyType = i
 		
 		if i == 0:
-			sprite.frames = load("res://spriteframes/zephra.tres")
-			arms.frames = load("res://spriteframes/zephraArms.tres")
+			sprite.frames = load("res://spriteframes/swatZephra.tres")
+			arms.frames = load("res://spriteframes/swatZephraArms.tres")
 			arms.position += Vector2(0, -1)
 		if i == 1:
-			sprite.frames = load("res://spriteframes/gab.tres")
-			arms.frames = load("res://spriteframes/gabArms.tres")
+			sprite.frames = load("res://spriteframes/swatGabz.tres")
+			arms.frames = load("res://spriteframes/swatGabzArms.tres")
 			arms.position += Vector2(0, -2)
 	
 	if type == "madmax":
@@ -54,8 +54,8 @@ func setType(t, i = randi() % 3):
 		
 		arms.connect("animation_finished", self, "stopArms")
 		
-		sprite.frames = load("res://spriteframes/alexander.tres")
-		arms.frames = load("res://spriteframes/alexanderArms.tres")
+		sprite.frames = load("res://spriteframes/madMaxAlexander.tres")
+		arms.frames = load("res://spriteframes/madMaxAlexanderArms.tres")
 		arms.position += Vector2(0, -2)
 
 func getInputs(delta):
