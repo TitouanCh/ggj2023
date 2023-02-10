@@ -73,7 +73,7 @@ func _draw():
 
 func attack():
 	if Global.active_upgrades.has("Shoot"):
-		get_parent().playSound("gun.wav")
+#		get_parent().playSound("gun.wav")
 		if arms:
 			arms.animation = "attack"
 			arms.playing = true
@@ -82,7 +82,7 @@ func attack():
 			shootAttack(get_mouse_position_actual().rotated((randf()-0.5)/2), 5, 0.2, false)
 		else: shootAttack(get_mouse_position_actual(), 5, 0.2, false)
 	else:
-		get_parent().playSound("coup_ventre_enemies.wav")
+#		get_parent().playSound("coup_ventre_enemies.wav")
 		meleeAttack(get_mouse_position_actual(), 0.3, 0)
 
 func get_mouse_position_actual():
@@ -93,7 +93,7 @@ func _on_sprite_animation_finished():
 	if dead: get_parent().restart()
 
 func dash():
-	get_parent().playSound("dash.wav")
+#	get_parent().playSound("dash.wav")
 	self.modulate = Color(155, 0 , 155)
 	velocity += get_mouse_position_actual().normalized() * dashPower
 	var a = damageZone.instance()

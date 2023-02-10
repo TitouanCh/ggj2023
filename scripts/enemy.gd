@@ -92,10 +92,10 @@ func getInputs(delta):
 
 func attack():
 	if type == "melee":
-		get_parent().playSound("coup_ventre_enemies.wav")
+#		get_parent().playSound("coup_ventre_enemies.wav")
 		meleeAttack(player.global_position - self.global_position, 0.3, 0.4)
 	if type == "swat" or type == "madmax":
-		get_parent().playSound("gun.wav")
+#		get_parent().playSound("gun.wav")
 		arms.animation = "attack"
 		arms.playing = true
 		$particles.emitting = true
@@ -109,7 +109,7 @@ func _draw_line():
 
 func die():
 	print(self.name + " is dead.")
-	get_parent().reduceEnemyCount()
+#	get_parent().reduceEnemyCount()
 	var s = fx.instance()
 	get_parent().add_child(s)
 	s.global_position = self.position - Vector2(8, 8)
